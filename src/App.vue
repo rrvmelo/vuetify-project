@@ -143,8 +143,8 @@
         <v-list-item prepend-icon="mdi-format-list-bulleted">Resultado das Votações</v-list-item>
       </v-list-group>
 
-      <!--Sobre o Hortolândia Fácil-->
-      <v-list-item prepend-icon="mdi-information">Sobre Hortolândia Fácil</v-list-item>
+      <!--Sobre o Fácil-->
+      <v-list-item prepend-icon="mdi-information">Sobre  Fácil</v-list-item>
     </v-navigation-drawer>
 
     <!--HEADER-->
@@ -202,7 +202,7 @@
 
     <!--FOOTER-->
     <v-footer>
-      //<pre><strong>Prefeitura Municipal de Hortolândia</strong> Departamento de Tecnologia da Informação</pre>
+      //<pre>Departamento de Tecnologia da Informação</pre>
     </v-footer>
   </v-app>
 </template>
