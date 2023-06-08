@@ -3,15 +3,6 @@
     <!--SIDEBAR-->
     <v-navigation-drawer v-model="isDrawerOpen">
 
-      <v-avatar class="mr-2">
-        <v-img cover src="https://img.freepik.com/icones-gratis/do-utilizador_318-563642.jpg?size=626&ext=jpg"
-          alt="user-image">
-        </v-img>
-      </v-avatar>
-      USERNAME<br>
-      CPF: XXX.XXX.XXX-XX
-
-
       <v-text-field v-model="search" label="Busca por protocolo" single-line hide-details>
       </v-text-field>
       <v-btn icon>
@@ -144,7 +135,7 @@
       </v-list-group>
 
       <!--Sobre o Fácil-->
-      <v-list-item prepend-icon="mdi-information">Sobre  Fácil</v-list-item>
+      <v-list-item prepend-icon="mdi-information">Sobre Fácil</v-list-item>
     </v-navigation-drawer>
 
     <!--HEADER-->
@@ -158,19 +149,61 @@
         <!--Button Toggle-->
         <v-btn :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'" @click="onToggleTheme">
         </v-btn>
-        <v-btn icon>
-          <v-badge dot color="#fc641a">
-            <v-icon icon="mdi-bell-outline"></v-icon>
-          </v-badge>
-        </v-btn>
-        <v-btn>
-          <v-avatar class="mr-2">
-            <v-img cover src="https://img.freepik.com/icones-gratis/do-utilizador_318-563642.jpg?size=626&ext=jpg"
-              alt="user-image">
-            </v-img>
-          </v-avatar>
-          user-full-name
-        </v-btn>
+        <!--Notify-->
+        <v-menu>
+          <template #activator="{ props }">
+            <v-btn icon v-bind="props">
+              <v-badge dot color="#fc641a">
+                <v-icon icon="mdi-bell-outline"></v-icon>
+              </v-badge>
+            </v-btn>
+          </template>
+          <v-card width="270px">
+            <v-list :lines="false" density="compact" nav>
+              <v-list-item><v-list-item-title>Você não tem notificações</v-list-item-title></v-list-item>
+              <v-divider></v-divider>
+              <v-list-item><v-list-item-title>Não lidas</v-list-item-title>
+                <template v-slot:append>
+                  <v-badge color="#fc641a" :content="99" inline text-color="white">
+                  </v-badge>
+                </template>
+              </v-list-item>
+              <v-divider></v-divider>
+              <v-list-item prepend-icon="mdi-inbox">
+                <v-list-item-title text-h6>Área Livre</v-list-item-title>
+                <v-list-item-subtitle text mb-1>Lorem</v-list-item-subtitle>
+                <text-medium-emphasis>Lorem ipsum dolor sit amet consectetur adipisicing elit. </text-medium-emphasis>
+              </v-list-item>
+
+              <v-divider></v-divider>
+              <v-btn prepend-icon="mdi-home" color="white" to="#">Ir para a página inicial</v-btn>
+            </v-list>
+
+          </v-card>
+        </v-menu>
+        <!--Avatar-->
+        <v-menu>
+          <template #activator="{ props }">
+            <v-avatar class="mr-2" v-bind="props">
+              <v-img cover src="https://img.freepik.com/icones-gratis/do-utilizador_318-563642.jpg?size=626&ext=jpg"
+                alt="user-image">
+              </v-img>
+            </v-avatar>
+            JOHN DOE
+          </template>
+
+          <v-card min-width="200px">
+            <v-list :lines="false" density="compact" nav>
+              <v-list-item><v-list-item-title>Último Acesso DD/MM/YYYY HH24:MI:SS</v-list-item-title></v-list-item>
+              <v-divider></v-divider>
+              <v-list-item><v-list-item-title>Nome Completo: </v-list-item-title>JOHN DOE</v-list-item>
+              <v-list-item><v-list-item-title>Email: </v-list-item-title>johndoe@email.com</v-list-item>
+              <v-list-item><v-list-item-title>CPF: </v-list-item-title>123.XXX.XXX-00</v-list-item>
+            </v-list>
+          </v-card>
+          <v-btn prepend-icon="mdi-account" color="white" to="#">Ver Perfil</v-btn>
+          <v-btn prepend-icon="mdi-logout" color="error" to="#">Sair do Sistema</v-btn>
+        </v-menu>
       </template>
     </v-app-bar>
 
@@ -179,8 +212,7 @@
       <v-container fluid>
         <h2>Início</h2>
         <v-row>
-          <v-col v-for="item in items" 
-          cols="12" sm="6" md="4" lg="3">
+          <v-col v-for="item in items" cols="12" sm="6" md="4" lg="3">
             <!--construção do card-->
             <v-card>
               <!--add imagem no card-->
@@ -198,12 +230,14 @@
           </v-col>
         </v-row>
       </v-container>
+
+      <!--FOOTER-->
+      <v-footer>
+        <pre>Departamento de Tecnologia da Informação</pre>
+      </v-footer>
+
     </v-main>
 
-    <!--FOOTER-->
-    <v-footer>
-      //<pre>Departamento de Tecnologia da Informação</pre>
-    </v-footer>
   </v-app>
 </template>
 
