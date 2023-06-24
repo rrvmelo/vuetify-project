@@ -34,7 +34,7 @@
           <v-list-item prepend-icon="mdi-plus-thick">Relatório</v-list-item>
           <v-list-item prepend-icon="mdi-information-outline">Sobre a Ficha Informativa</v-list-item>
         </v-list-group>
-      
+
 
         <!--FUMCRIA-->
         <v-list-group value="FUMCRIA">
@@ -52,7 +52,7 @@
           <v-list-item prepend-icon="mdi-magnify">Lista de Entidades</v-list-item>
           <v-list-item prepend-icon="mdi-help">Dúvidas Frequentes</v-list-item>
         </v-list-group>
-      
+
 
         <!--Agendar Serviço Presencial-->
         <v-list-group value="Agendar Serviço Presencial">
@@ -136,8 +136,8 @@
         </v-list-group>
       </v-list>
 
-        <!--Sobre o Fácil-->
-        <v-list-item prepend-icon="mdi-information">Sobre Fácil</v-list-item>
+      <!--Sobre o Fácil-->
+      <v-list-item prepend-icon="mdi-information">Sobre Fácil</v-list-item>
     </v-navigation-drawer>
 
 
@@ -221,19 +221,33 @@
             <v-card-title>Últimos Usuários Cadastrados</v-card-title>
 
             <!-- Button New User -->
-            <v-card-title>
-              <v-btn @click="isDialogOpen = true" variant="tonal">Criar novo Usuário</v-btn>
+            <v-card>
+              <v-btn @click="isDialogOpen = true" variant="tonal">Criar Novo Usuário</v-btn>
               <v-dialog v-model="isDialogOpen" width="85vh">
                 <v-card>
                   <v-card-text>
-                    Hey
-                    <v-btn color="white">Enviar</v-btn>
-                    <v-btn color="error">fechar</v-btn>
+                    <v-container>
+
+                      <div class="d-flex justify-space-between">
+                        <v-card-title>Novo Usuário</v-card-title>
+                        <v-btn icon="mdi-window-close" @click="isDialogOpen = false"></v-btn>
+                      </div>
+                      <v-col cols="12">
+                        <v-text-field label="Nome*" required></v-text-field>
+                        <v-text-field label="Email*" required></v-text-field>
+                        <v-text-field label="Função*" required></v-text-field>
+                      </v-col>
+                    </v-container>
+                    <small>*Campos Obrigatórios</small>
                   </v-card-text>
 
+                  <v-card-actions>
+                    <v-btn color="white" variant="tonal">Criar</v-btn>
+                    <v-btn color="error" variant="tonal" @click="isDialogOpen = false">Fechar</v-btn>
+                  </v-card-actions>
                 </v-card>
               </v-dialog>
-            </v-card-title>
+            </v-card>
 
 
           </div>
@@ -252,7 +266,31 @@
                 <td>john.doe@email.com</td>
                 <td>User</td>
                 <td>
-                  <v-btn icon="mdi-pencil" variant="tonal" color="primary"></v-btn>
+                  <v-btn @click="isOpenEditUser = true" icon="mdi-pencil" variant="tonal" color="primary"></v-btn>
+                  <v-dialog v-model="isOpenEditUser" width="85vh">
+                    <v-card>
+                      <v-card-text>
+                        <v-container>
+
+                          <div class="d-flex justify-space-between">
+                            <v-card-title>Editar</v-card-title>
+                            <v-btn icon="mdi-window-close" @click="isOpenEditUser = false"></v-btn>
+                          </div>
+                          <v-col cols="12">
+                            <v-text-field label="Nome*" required></v-text-field>
+                            <v-text-field label="Email*" required></v-text-field>
+                            <v-text-field label="Função*" required></v-text-field>
+                          </v-col>
+                        </v-container>
+                        <small>*Campos Obrigatórios</small>
+                      </v-card-text>
+
+                      <v-card-actions>
+                        <v-btn color="white" variant="tonal">Salvar</v-btn>
+                        <v-btn color="error" variant="tonal" @click="isOpenEditUser = false">Cancelar</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
                 </td>
               </tr>
               <tr>
@@ -312,10 +350,10 @@ import { ref } from 'vue';
 
 //Sidebar Config
 const isDrawerOpen = ref(false);
-//Sidebar Sub Menu
-const isSubSide = ref(false);
 //Show Dialog
 const isDialogOpen = ref(false);
+//Show Edit User
+const isOpenEditUser = ref(false);
 //Theme Config Toogle
 const theme = ref('dark')
 function onToggleTheme() {
